@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+body{
+    background-color: #242424;
+    color: #ffffff;
+    text-align: center;
+    font-family: 'Press Start 2P';
+}
+
+footer{
+    margin-top: 150px;
+    display: flex;
+    flex-direction: row;
+    align-items:flex-end;
+    justify-content: space-between;
+}
+
+p,#custom-link, #podium-link{
+    color: #ffffff;
+    font-family: 'VT323';
+    
+}
+
+p{
+    
+}
+
+#custom-link{
+    
+}
