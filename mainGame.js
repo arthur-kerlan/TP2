@@ -16,6 +16,7 @@ var config = {
         update : update
     }
 };
+let gameOver = false;
 
 var game =  new Phaser.Game(config);
 
@@ -24,7 +25,7 @@ var player;
 var ground;
 const groundWidth = 1200;
 const groundHeight = 24;
-var groundInitialVelocity = -300;
+var groundInitialVelocity = -400;
 var cactus1
 
 var cursors;
@@ -32,7 +33,6 @@ var cursors;
 var static_ground;
 
 function preload(){
-
 
     this.load.image('ground', 'imgs/gameFrames/ground.png');
     this.load.spritesheet('dino', 'imgs/gameFrames/2x-trex.png',{frameWidth: 88, frameHight: 94});
@@ -77,6 +77,11 @@ function create(){
         frameRate: 1,
         repeat: -1
     });
+    this.anims.create({
+        key: 'death',
+        frames: [ { key: 'dino', frame: 5 } ],
+        frameRate: 1,
+    });
 
     cactus1 = this.physics.add.sprite(larguraJogo, alturaJogo-100-18, 'cactus1').setOrigin(0,0);
     cactus1.setVelocityX(groundInitialVelocity);
@@ -84,6 +89,14 @@ function create(){
     this.physics.add.collider(player, static_ground);
     this.physics.add.collider(ground, ground_colisor);
     this.physics.add.collider(cactus1, static_ground);
+
+    this.physics.add.overlap(player, cactus1, (player, colisor) => {
+        this.physics.pause();
+
+        player.anims.play('death');
+
+        gameOver = true;
+    }, null, this);
 
     cursors = this.input.keyboard.createCursorKeys();
 }
@@ -102,14 +115,16 @@ function update(){
     if(cactus1.body.x  <= -48)
         cactus1.body.x = larguraJogo;
 
-    if (cursors.up.isDown && player.body.touching.down)
+    if (cursors.up.isDown && player.body.touching.down && gameOver != true)
     {
         player.anims.play('stand');
         player.setVelocityY(-1500);
     }
 
-    else if(player.body.touching.down){
+    else if(player.body.touching.down && gameOver != true){
         
         player.anims.play('walking', 'stand');
     }
+
+    
 }
