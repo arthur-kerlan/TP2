@@ -1,0 +1,25 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&display=swap');
+
+article{
+    background-color: #272727;
+    color: #ffffff;
+    font-family: 'Press Start 2P';
+    text-align: center;
+    line-height: 20px;
+    margin: 5% 30%;
+    padding: 2%;
+    border-radius: 15%;
+    box-shadow: 2px 2px 2px black;
+}
+
+article img{
+    display: block;
+    text-align: center;
+    margin: 0px auto;
+    border-radius: 50%;
+}
+
+footer{
+    margin: 0;
+}
